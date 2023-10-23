@@ -1,5 +1,53 @@
 from main_module import st, pd, URLError
 
+import streamlit as st
+import pandas as pd
+
+class user_interface:
+    def __init__(self,df):
+        st.title('Arcadia streamlit')
+        st.write('Tiny example of data from dummy things')
+        self.load_data(df)
+        self.select_category()
+
+    def load_data(self, df):
+        self.df = df
+
+    def select_category(self):
+        colonna_selezionata = st.sidebar.selectbox("Seleziona una tipologia", self.df.columns)
+        filtro_opzioni = self.df[colonna_selezionata].unique()
+        categoria_selezionata = st.sidebar.selectbox("Seleziona un filtro", filtro_opzioni)
+        data_filtrati = self.df[self.df[colonna_selezionata] == categoria_selezionata]
+        st.write(f"Numero di righe per la categoria '{categoria_selezionata}': {len(data_filtrati)}")
+        st.write(categoria_selezionata)
+        self.calculate_correlation(data_filtrati)
+
+
+#if __name__ == '__main__':
+    #app = user_interface()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Aggiungi un titolo all'app
 st.title('Arcadia streamlight')
 
@@ -7,7 +55,7 @@ st.title('Arcadia streamlight')
 st.write('Tiny example of data from dummy things.')
 
 # Carica il tuo DataFrame
-df = pd.read_excel("qualys-kb.xlsx")
+df = pd.read_excel("./data/arcadia-light.xlsx")
 
 # Aggiungi una barra laterale per la selezione della categoria
 

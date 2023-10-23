@@ -33,11 +33,11 @@ Questo è il modulo principale del progetto. Può essere utilizzato come punto d
 ## Come Eseguire il Progetto
 
 1. Installa le dipendenze necessarie eseguendo `pip install -r requirements.txt`.
-# altrimenti le seguenti dipendenze puntuali
-# pip install scikit-learn
-# pip install Levenshtein
-# pip install Pandas
-# pip install streamlit
+ altrimenti le seguenti dipendenze puntuali
+ pip install scikit-learn
+ pip install Levenshtein
+ pip install Pandas
+ pip install streamlit
 
 Se pip install -r requirements.txt non è bastato una volta sistemato è possibile aggiornare i requirements
 	1.1 Aggiorna le dipendeze necessarie nel file requirements.txt eseguendo 'pip freeze > requirements.txt'
