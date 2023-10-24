@@ -2,7 +2,7 @@ import multiprocessing
 import data_handling
 from main_module import distance,pd
 
-
+ 
 
 def process_data_chunk(df_chunk, df2_complete, result_df, idarcadia):
     # Creare un DataFrame vuoto per i risultati
