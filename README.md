@@ -1,9 +1,9 @@
- # About me
+ # About QID-NessusID-OtherID
  
 <p>
  <img align="right" width="350" src="/assets/programmer.gif" alt="Coding gif" />
   
- ✌️ &emsp; Enjoy to do programming and sharing knowledge <br/><br/>
+ ✌️ &emsp; Enjoy the research and sharing knowledge <br/><br/>
  ❤️ &emsp; Love to writing code and learning new features<br/><br/>
  📧 &emsp; Reach me anytime: ZeMatt90.dev@gmail.com<br/><br/>
  💬 &emsp; Ask me about anything [here](https://github.com/ZeMatt90/ZeMatt90/issues)
@@ -17,7 +17,8 @@
 ## Used To Code
 ![VSCode](https://img.shields.io/badge/Visual_Studio-0078d7?style=for-the-badge&logo=visual%20studio&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-
+![Python]([https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white](https://img.shields.io/pypi/pyversions/3
+)).
 <br/>
 <!-- About public 
 ## Top Open Source -
@@ -58,7 +59,7 @@
 
 
 
-# Arcadia Project
+# QID-NessusID-OtherID Project
 
 Questo è un progetto Python suddiviso in moduli distinti per una maggiore organizzazione e manutenibilità.
 
@@ -98,4 +99,4 @@ Se pip install -r requirements.txt non è bastato una volta sistemato è possibi
 	1.1 Aggiorna le dipendeze necessarie nel file requirements.txt eseguendo 'pip freeze > requirements.txt'
 
 2. Esegui BE `python3 main.py` per avviare il progetto.
-3. Esegui FE 
+3. Esegui FE streamlit run user_interface.py
