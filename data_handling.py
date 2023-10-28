@@ -33,7 +33,7 @@ class DataHandler:
         print("Summary:")
         #print("Qualys Data Shape:", self.qualysdata.shape)
         styled_df = self.qualysdata.style.format({'QID': '{:.0f}', 'Titolo': '{:.2f}'}) \
-        .set_properties(**{'text-align': 'center'}) 
+        #.set_properties(**{'text-align': 'center'}) 
         # Imposta il formato per le colonne specifiche
          # Allinea il testo al centro
           # Nascondi l'indice
@@ -46,19 +46,6 @@ class DataHandler:
         print("Nessus Data Shape:", self.nessusdata.shape)
         print("Arcadia Data Shape:", self.arcadiadata.shape)
 
-
-    def _test_data(self):
-        # Logica per mostrare i dati
-        for row1 in self.qualysdata:
-            for row2 in self.nessusdata:
-                # Calcolo della distanza euclidea tra le due righe
-                euclidean_distance = distance.euclidean(row1, row2)
-                print(f"Distanza euclidea tra le righe: {euclidean_distance}")
-
-
-
-
-
 def test_data(self):
     # Logica per mostrare i dati
     for row1 in self.qualysdata:
@@ -69,7 +56,7 @@ def test_data(self):
 
 def stampa_pubb(self):
     print("stampa pubb")
-    _test_data(self)
+    
 def _stampa_priv():
     print("stampa priv")
 
