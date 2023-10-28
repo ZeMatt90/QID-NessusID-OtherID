@@ -6,36 +6,22 @@ from multiprocessing import Pool
 import time
 from difflib import SequenceMatcher
 
+
 def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
     try:
         for i, row1 in enumerate(df_chunk):
             for j, row2 in enumerate(df2_complete):
-                #print(f"Iteration i{i}:j{j}")#, RowQualys {row1}")
-                #print(f"Iteration {j}")#, Row2 {row2}")
-                #print(f"Iteration i{i}, RowQualys chunked\n {row1}\n\n\n")
-                #print(f"Iteration {j}, Row2\n {row2}\n\n\n")
-                cve1 = row1.get('CVE ID', '')
-                #cves1 = row1.get('cves', [])
-                #cveid2 = row2.get('CVEID', '')
-                cve2 = row2.get('cves', [])
-
+                cve1 = str(row1.get('CVE ID', ''))
+                cve2 = str(row2.get('cves', []))
+             
                # Calcola la similarità tra i valori utilizzando SequenceMatcher
                 similarity_cveid = SequenceMatcher(None, cve1, cve2).ratio()
-
-                # Confronta gli insiemi di CVEs
-                #common_cves = set(cve1) & set(cve2)
-                #similarity_cves = len(common_cves) / max(len(cve1), len(cve2))
-
-
-
                 
                 # Calcola una misura complessiva di similarità basata sulle due chiavi
                 overall_similarity = (similarity_cveid )#+ similarity_cves) / 2
 
-                if overall_similarity>0.5:
-                    print("\nsimilarity_cveid:",similarity_cveid)
-                    #print("\nsimilarity_cves:",similarity_cves)
-                    print("\nsimilarity overall:",overall_similarity)
+                if overall_similarity>0.69:
+                 #                   print("\nsimilarity overall:",overall_similarity)
                     result_row = {
                         "ID": idarcadia,
                         "similarity": overall_similarity,
@@ -51,13 +37,13 @@ def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
                     result_queue.put(result_row)
     except Exception as e:
         print(f"Process {idarcadia} ha generato un errore: {str(e)}")
-    finally:
-        print(f"Process {idarcadia} esce.")
+    #finally:
+    #    print(f"Process {idarcadia} esce.")
     #print(f"Process {idarcadia} ha terminato.")
 if __name__ == '__main__':
     try:
         num_processes = multiprocessing.cpu_count() 
-        num_processes=1
+        #num_processes=6
         data_handler =data_handling.DataHandler()
         data_handler.load_data()
 

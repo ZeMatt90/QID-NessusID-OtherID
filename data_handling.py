@@ -11,7 +11,7 @@ class DataHandler:
 
     def load_data(self):
         # Carica i dati dai file specificati
-        self.qualysdata = pd.read_excel("./data/qualys-light0.xlsx")
+        self.qualysdata = pd.read_excel("./data/qualys-kb.xlsx")
         self.nessusdata = pd.read_excel("./data/nessus-light.xlsx")
         self.arcadiadata = pd.read_excel("./data/arcadia.xlsx")
 
