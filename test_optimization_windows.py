@@ -6,6 +6,7 @@ import math
 import time
 import urllib.request
 import matplotlib.pyplot as plt
+import pandas as pd
 
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 
@@ -37,27 +38,34 @@ def io_intensive():
                 output.write(str(page))
 
 #più veloce con più processi
-def compute_intensive(x):
-    foo = 0
-    for i in range(10**7):
-        foo += foo * math.cos(i*math.pi)
+def compute_intensive(x,df_chunk,df2_complete,ed):
+    
+    result_dfs = pd.DataFrame(columns=["ID", "Row1", "Row2", "Euclidean Distance"])
+    for row1 in df_chunk.iterrows():
+        print(row1)
+        for row2 in df2_complete.iterrows():
+            result_dfs.concat([idarcadia, row1, row2,ed])
 
 
 def test_compute_intensive():
     times = []
-    num_tasks = 4
-    #time_init = time.time()
-    # for i in range(num_tasks):
-    #     windows_worker_cpu.compute_intensive(i)
-    # time_end = time.time()
-    # times.append(float(time_end - time_init))
-    # print(f'Serial execution took {time_end - time_init}s.')
-    # n_threads = num_tasks
-    # time_init = time.time()
-    # multithreading(windows_worker_cpu.compute_intensive, range(num_tasks), n_threads)
-    # time_end = time.time()
-    # times.append(float(time_end - time_init))
-    # print(f'Multithreading with {n_threads} threads took {time_end - time_init}s.')
+    num_tasks = 1
+    time_init = time.time()
+    for i in range(num_tasks):
+         windows_worker_cpu.compute_intensive(i)
+    time_end = time.time()
+    times.append(float(time_end - time_init))
+    print(f'Serial execution took {time_end - time_init}s.')
+    n_threads = num_tasks
+    time_init = time.time()
+    multithreading(windows_worker_cpu.compute_intensive, range(num_tasks), n_threads)
+    time_end = time.time()
+    times.append(float(time_end - time_init))
+    print(f'Multithreading with {n_threads} threads took {time_end - time_init}s.')
+
+
+
+
     n_procs = num_tasks
     time_init = time.time()
     multiprocessing(windows_worker_cpu.compute_intensive, range(num_tasks), n_procs)

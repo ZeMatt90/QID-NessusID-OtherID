@@ -11,9 +11,9 @@ class DataHandler:
 
     def load_data(self):
         # Carica i dati dai file specificati
-        self.qualysdata = pd.read_excel("./data/qualys-kb.xlsx")
+        self.qualysdata = pd.read_excel("./data/qualys-light0.xlsx")
         self.nessusdata = pd.read_excel("./data/nessus-light.xlsx")
-        self.arcadiadata = pd.read_excel("./data/arcadia-light.xlsx")
+        self.arcadiadata = pd.read_excel("./data/arcadia.xlsx")
 
     def process_data(self):
         # Esempio di logica di elaborazione dei dati
@@ -73,64 +73,3 @@ def stampa_pubb(self):
 def _stampa_priv():
     print("stampa priv")
 
-
-
-# stringa = "CVE-2022-3602,CVE-2022-3786"
-# stringa1 = ""
-# stringa2 = "Open Secure Sockets Layer (OpenSSL) Less Than 3.0.7 Buffer Overflow Vulnerability"
-#
-# distanza = Levenshtein.distance(stringa1, stringa2)
-#
-# print(f"Distanza di Levenshtein tra '{stringa1}' e '{stringa2}': {distanza}")
-#
-#
-# percorso_corrente = os.path.abspath(os.getcwd())
-#
-# # Costruisci il percorso completo al file Excel
-# percorso_excel = os.path.join(percorso_corrente, "qualys", "qualys-light2.xlsx")
-#
-# # Leggi il file Excel
-# df = pd.read_excel(percorso_excel)
-#
-# #df = pd.read_excel("./qualys/qualys-light2.xlsx")
-#
-# documento1 = [
-#     '39',
-#     'Open Secure Sockets Layer (OpenSSL) Less Than 3.0.7 Buffer Overflow Vulnerability',
-#     'Remote Discovery, Multiple Authentication Types Discovery, Patch Available',
-#     'General remote services',
-#     'CVE-2022-3602, CVE-2022-3786',
-#     'OpenSSL 3.0.7', '10.00',
-#     '7.50',
-#     '11/07/2022 at 02:33:47 PM (GMT+0100)',
-#     '10/31/2022 at 12:40:23 PM (GMT+0100)',
-#     'Security Patch Installation',
-#     '#NAME?']
-#
-# # Creazione del vettore TF-IDF per i documenti
-# vectorizer = TfidfVectorizer()
-# X = vectorizer.fit_transform(documento1)
-#
-# # Calcola la similarità coseno tra i documenti
-# similarità = cosine_similarity(X)
-#
-# # Stampa la matrice di similarità
-# print("***************Matrice di similarità documento:")
-# print(similarità)
-#
-#
-# correlazioni = df.corr()
-# print("****************Matrice di correlazione df:")
-# print(correlazioni)
-#
-
-
-# Crea un vettore TF-IDF per ciascun documento
-#vectorizer = TfidfVectorizer()
-#X = vectorizer.fit_transform([documento1, documento2])
-
-# Calcola la similarità coseno tra i due documenti
-#similarità = cosine_similarity(X[0], X[1])
-
-# Stampa la similarità coseno
-#print("Similarità coseno tra documento1 e documento2:", similarità[0][0])
