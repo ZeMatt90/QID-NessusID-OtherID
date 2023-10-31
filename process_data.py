@@ -1,6 +1,6 @@
 import multiprocessing 
 import data_handling
-from main_module import distance,pd
+from main_module import *
 import numpy as np
 from multiprocessing import Pool
 import time
@@ -20,7 +20,7 @@ def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
                 # Calcola una misura complessiva di similarità basata sulle due chiavi
                 overall_similarity = (similarity_cveid )#+ similarity_cves) / 2
 
-                if overall_similarity>0.69:
+                if overall_similarity>0.79:
                  #                   print("\nsimilarity overall:",overall_similarity)
                     result_row = {
                         "ID": idarcadia,
@@ -29,7 +29,7 @@ def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
                         "CVE ID qualys": row1.get('CVE ID', ''),
                         "QID": row1.get('QID', ''),
                         "Title": row1.get('Title', ''),
-                        #parte di nessus
+                        #parte di nessus 
                         "doc_id": row2.get('doc_id', ''),
                         "cves nessus": row2.get('cves', []),
                         "script name": row2.get('script_name', '')
@@ -40,28 +40,21 @@ def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
     #finally:
     #    print(f"Process {idarcadia} esce.")
     #print(f"Process {idarcadia} ha terminato.")
+
 if __name__ == '__main__':
     try:
         num_processes = multiprocessing.cpu_count() 
-        #num_processes=6
+        if num_processes >1:
+            num_processes -=1
         data_handler =data_handling.DataHandler()
         data_handler.load_data()
 
         print("Dividi i DataFrame in chunk", num_processes)    
-        #chunk_size = len(data_handler.qualysdata) // num_processes  # Dividi in base al numero di processi desiderati
-        #df_chunks = [data_handler.qualysdata[i:i + chunk_size] for i in range(0, len(data_handler.qualysdata), chunk_size)]
-        #df2_complete= data_handler.nessusdata.copy()
-
-        #df_chunk =data_handler.qualysdata# [data_handler.qualysdata[i:i + chunk_size].copy() for i in range(0, len(data_handler.qualysdata), chunk_size)]
         chunk_size = len(data_handler.qualysdata) // num_processes
         df_chunks = [data_handler.qualysdata[i:i + chunk_size].copy() for i in range(0, len(data_handler.qualysdata), chunk_size)]
-        #df2_complete = data_handler.nessusdata.copy()
-
         # Converti i DataFrame in liste di dizionari
         df_chunks = [df.to_dict(orient='records') for df in df_chunks]
         
-
-
         # Crea una coda per i risultati
         result_queue = multiprocessing.Queue()
 
@@ -93,9 +86,16 @@ if __name__ == '__main__':
             process.join()
          # Imposta la condizione di uscita in modo che il processo principale esca in modo pulito
         should_exit = True
-        
+
+
         time_end = time.time()
         times.append(float(time_end - time_init))
+
+        print("istanziati i dati e caricati in memoria al modico prezzo di %s byte",sys.getsizeof(df_chunks))
+        total_memory_usage = 0
+        for df in [data_handler.nessusdata, data_handler.qualysdata, data_handler.arcadiadata]:
+          total_memory_usage += df.memory_usage(deep=True).sum()  # Calcola la dimensione effettiva dei DataFrame
+        print(f"Dimensione totale: {total_memory_usage} byte")
 
         print(f'Serial execution took {time_end - time_init}s.')
         print("**********FINE****************")

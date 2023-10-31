@@ -22,41 +22,13 @@ class DataHandler:
         self.arcadiadata = pd.merge(self.qualysdata, self.nessusdata, on='CVE ID')
         pd.ExcelWriter("./data/arcadia-light.xlsx", self.arcadiadata) 
 
-        
-    def calculate_correlation(self, data):
-        correlazione = data.corr()
-        st.dataframe(correlazione)
-        # Altre operazioni sui dati...
-
     def display_summary(self):
         # Esempio di visualizzazione di un riassunto dei dati
         print("Summary:")
         #print("Qualys Data Shape:", self.qualysdata.shape)
         styled_df = self.qualysdata.style.format({'QID': '{:.0f}', 'Titolo': '{:.2f}'}) \
-        #.set_properties(**{'text-align': 'center'}) 
-        # Imposta il formato per le colonne specifiche
-         # Allinea il testo al centro
-          # Nascondi l'indice
         # Visualizza il DataFrame con la formattazione
         styled_df_html = styled_df.to_html()
         print(styled_df_html)
         #print("Qualys Data Shape:",styled_df)
-
-
-        print("Nessus Data Shape:", self.nessusdata.shape)
         print("Arcadia Data Shape:", self.arcadiadata.shape)
-
-def test_data(self):
-    # Logica per mostrare i dati
-    for row1 in self.qualysdata:
-        for row2 in self.nessusdata:
-            # Calcolo della distanza euclidea tra le due righe
-            euclidean_distance = distance.euclidean(row1, row2)
-            print(f"Distanza euclidea tra le righe: {euclidean_distance}")
-
-def stampa_pubb(self):
-    print("stampa pubb")
-    
-def _stampa_priv():
-    print("stampa priv")
-
