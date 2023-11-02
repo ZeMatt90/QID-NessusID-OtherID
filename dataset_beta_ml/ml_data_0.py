@@ -4,7 +4,9 @@ import pandas as pd
 from multiprocessing import Pool
 import time
 from difflib import SequenceMatcher
-
+import pandas as pd
+from sklearn.cluster import KMeans
+import mlprocess as mlp
 
 def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
     try:
@@ -18,7 +20,7 @@ def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
                 
                 # Calcola una misura complessiva di similarità basata sulle due chiavi
                 overall_similarity = (similarity_cveid )#+ similarity_cves) / 2
-
+                pd = mlp.start_boomb(df_chunk)
                 if overall_similarity>0.79:
                  #                   print("\nsimilarity overall:",overall_similarity)
                     result_row = {
