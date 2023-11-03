@@ -7,30 +7,27 @@ from difflib import SequenceMatcher
 import pandas as pd
 from sklearn.cluster import KMeans
 import mlprocess as mlp
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
 
 def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
     try:
         for i, row1 in enumerate(df_chunk):
             for j, row2 in enumerate(df2_complete):
-                cve1 = str(row1.get('CVE ID', ''))
-                cve2 = str(row2.get('cves', []))
-             
-               # Calcola la similarità tra i valori utilizzando SequenceMatcher
-                similarity_cveid = SequenceMatcher(None, cve1, cve2).ratio()
-                
-                # Calcola una misura complessiva di similarità basata sulle due chiavi
-                overall_similarity = (similarity_cveid )#+ similarity_cves) / 2
-                pd = mlp.start_boomb(df_chunk)
-                if overall_similarity>0.79:
+                # Estrai le feature rilevanti da row1 e row2 per creare X_test_a e X_test_b
+                x_test_a = row1.get('CVE ID', '')
+                x_test_b = row2.get('doc_id', '')
+                # Calcola la similarità tra le righe utilizzando il modello
+                similarity_score = model.predict([X_test_a, X_test_b])
+
+                if similarity_score >0 :
                  #                   print("\nsimilarity overall:",overall_similarity)
                     result_row = {
-                        "ID": idarcadia,
-                        "similarity": overall_similarity,
-                        #parte di qualys
                         "CVE ID qualys": row1.get('CVE ID', ''),
                         "QID": row1.get('QID', ''),
                         "Title": row1.get('Title', ''),
-                        #parte di nessus 
                         "doc_id": row2.get('doc_id', ''),
                         "cves nessus": row2.get('cves', []),
                         "script name": row2.get('script_name', '')

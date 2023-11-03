@@ -5,7 +5,7 @@
   
  ✌️ &emsp; Enjoy the research and sharing knowledge <br/><br/>
  ❤️ &emsp; Love to writing code and learning new features<br/><br/>
- 📧 &emsp; Reach me anytime: ZeMatt90.dev@gmail.com<br/><br/>
+ 📧 &emsp; Reach me anytime: Zenit90+git@gmail.com<br/><br/>
  💬 &emsp; Ask me about anything [here](https://github.com/ZeMatt90/ZeMatt90/issues)
 
 </p>
@@ -20,13 +20,7 @@
 ![Python]([https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white](https://img.shields.io/pypi/pyversions/3
 )).
 <br/>
-<!-- About public 
-## Top Open Source -
-[![Web Projects](https://github-readme-stats.vercel.app/api/pin/?username=ZeMatt90&repo=web-projects&border_color=7F3FBF&bg_color=0D1117&title_color=C9D1D9&text_color=8B949E&icon_color=7F3FBF)](https://github.com/ZeMatt90/web-projects)
-[![Al Folio](https://github-readme-stats.vercel.app/api/pin/?username=ZeMatt90&repo=al-folio&border_color=7F3FBF&bg_color=0D1117&title_color=C9D1D9&text_color=8B949E&icon_color=7F3FBF)](https://github.com/ZeMatt90/al-folio)
-[![Al Siam Readme](https://github-readme-stats.vercel.app/api/pin/?username=ZeMatt90&repo=ZeMatt90&border_color=7F3FBF&bg_color=0D1117&title_color=C9D1D9&text_color=8B949E&icon_color=7F3FBF)](https://github.com/ZeMatt90/ZeMatt90)
-[![Al Siam Teminal](https://github-readme-stats.vercel.app/api/pin/?username=ZeMatt90&repo=ZeMatt90.github.io&border_color=7F3FBF&bg_color=0D1117&title_color=C9D1D9&text_color=8B949E&icon_color=7F3FBF)](https://github.com/ZeMatt90/ZeMatt90.github.io)
--->
+
 <p align="left">
   <a href="https://github.com/ZeMatt90?tab=repositories" target="_blank"><img alt="All Repositories" title="All Repositories" src="https://img.shields.io/badge/-All%20Repos-2962FF?style=for-the-badge&logo=koding&logoColor=white"/></a>
 </p>
@@ -65,31 +59,13 @@ Questo è un progetto Python suddiviso in moduli distinti per una maggiore organ
 
 ## Moduli del Progetto
 
-### `data_handling.py`
-In a very broad aspect, a data science project follows four steps:
+### `process_data.py`
 
-    Get the data;
-    Process the data;
-    Do something with the data;
-    Store other data
-
-Questo modulo gestisce la manipolazione dei dati e il dataframe del progetto. Include funzioni per leggere dati da un file, elaborare dati e creare/aggiornare il dataframe.
+Questo modulo gestisce la manipolazione dei dati e il dataframe del progetto. Include funzioni per leggere dati dai dataset, elaborare dati e creare/aggiornare il dataframe.
 
 ### `user_interface.py`
 
 Questo modulo utilizza Streamlit per creare un'interfaccia utente interattiva per il progetto. Le funzioni in questo modulo sono responsabili della visualizzazione dei dati, delle interazioni con l'utente e della presentazione dei risultati.
-
-### `calculations.py`
-
-Questo modulo contiene la logica per i calcoli specifici del progetto. Include funzioni che eseguono calcoli e aggiornano ciò che serve per l'interfaccia.
-
-### `.github/workflows/scheduled_data_handling.yml`
-
-Questo file di configurazione definisce un flusso di lavoro GitHub Actions per l'esecuzione di calcoli pianificati. È possibile specificare l'orario o l'azione che attiverà il flusso di lavoro. All'interno di questo flusso di lavoro, i calcoli definiti in `data_handling.py` vengono eseguiti automaticamente.
-
-### `main.py`
-
-Questo è il modulo principale del progetto. Può essere utilizzato come punto di ingresso principale. All'interno di questo modulo, i moduli `data_handling`, `user_interface` e `calculations` vengono importati e il flusso del programma viene coordinato. Il codice principale può essere eseguito all'interno di una costruzione `if __name__ == "__main__":`.
 
 ## Come Eseguire il Progetto
 
