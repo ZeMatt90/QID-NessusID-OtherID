@@ -42,18 +42,20 @@ class UserInterface:
         self.show_data_page("Nessus Page")
 
 def main():
+    
+    #st.snow()
     st.title("🌟  Arcadia Streamlit 🌟")
     st.write('A Tiny Example of Data from Dummy Things')
 
     data_files = {
-        "Arcadia": "./data/arcadia-light.xlsx",
-        "Qualys": "./data/qualys-light.xlsx",
-        "Nessus": "./data/nessus-light.xlsx"
+        "Arcadia": "./data/dictionary.csv",
+        "Qualys": "./data/qualys-light.csv",
+        "Nessus": "./data/nessus-light.csv"
     }
 
     tab = st.sidebar.selectbox("Scegli una archivio dati", list(data_files.keys()))
 
-    df = pd.read_excel(data_files[tab]) # type: ignore
+    df = pd.read_csv(data_files[tab]) # type: ignore
     user_interface = UserInterface(df)
 
     if tab == "Arcadia":

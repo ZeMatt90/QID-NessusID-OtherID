@@ -75,4 +75,4 @@ Se pip install -r requirements.txt non è bastato una volta sistemato è possibi
 	1.1 Aggiorna le dipendeze necessarie nel file requirements.txt eseguendo 'pip freeze > requirements.txt'
 
 2. Esegui BE `python3 main.py` per avviare il progetto.
-3. Esegui FE streamlit run user_interface.py
+3. Esegui FE `streamlit run user_interface.py`

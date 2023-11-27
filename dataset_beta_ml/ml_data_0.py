@@ -7,9 +7,9 @@ from difflib import SequenceMatcher
 import pandas as pd
 from sklearn.cluster import KMeans
 import mlprocess as mlp
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import layers
+#import tensorflow as tf
+#from tensorflow import keras
+#from tensorflow.keras import layers
 
 
 def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
@@ -20,7 +20,7 @@ def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
                 x_test_a = row1.get('CVE ID', '')
                 x_test_b = row2.get('doc_id', '')
                 # Calcola la similarità tra le righe utilizzando il modello
-                similarity_score = model.predict([X_test_a, X_test_b])
+                similarity_score = 1#model.predict([X_test_a, X_test_b])
 
                 if similarity_score >0 :
                  #                   print("\nsimilarity overall:",overall_similarity)
@@ -47,7 +47,7 @@ if __name__ == '__main__':
         data_handler =data_handling.DataHandler()
         data_handler.load_data()
 
-        print("Dividi i DataFrame in chunk", num_processes)    
+        print("Divido i DataFrame in chunk", num_processes)    
         chunk_size = len(data_handler.qualysdata) // num_processes
         df_chunks = [data_handler.qualysdata[i:i + chunk_size].copy() for i in range(0, len(data_handler.qualysdata), chunk_size)]
         # Converti i DataFrame in liste di dizionari
