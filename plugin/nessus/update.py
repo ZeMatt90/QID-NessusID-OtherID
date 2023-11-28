@@ -8,9 +8,9 @@ curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https
 file_newid= "cleaned_numbers.csv"
 file_full= "full_id.csv"
 file_nessus = "../../data/nessus-kb.csv"
-df_nuovo = pd.read_csv("cleaned_numbers.csv", header=None)
-df_full = pd.read_csv("full_id.csv", header=None)
-df_key = pd.read_csv('keyforget.csv' , header=None)
+df_nuovo = pd.read_csv("plugin/nessus/cleaned_numbers.csv", header=None)
+df_full = pd.read_csv("plugin/nessus/full_id.csv", header=None)
+df_key = pd.read_csv('plugin/nessus/keyforget.csv' , header=None)
 keyforget= df_key.iloc[0, 0]
 numeri_esistenti = df_full.values.flatten().tolist()
 numeri_nuovi = df_nuovo.values.flatten().tolist()
