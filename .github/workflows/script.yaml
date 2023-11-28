@@ -2,7 +2,7 @@ name: Update All
 
 on:
   schedule:
-    - cron: '0 15 * * *'
+    - cron: '51 17 * * *'
 jobs:
   execute:
     runs-on: ubuntu-latest
@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+    
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
@@ -29,7 +29,12 @@ jobs:
         # Scarico i nuovi ID dei nuovi plugin.
         curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv
         
-        
         python plugin/nessus/update.py
         python create_all_cve-light.py
         python createdictionary.py
+    name: Commit and Push Changes
+      run: |
+        git config --global user.name 'ZeMatt90'
+        git add plugin/nessus/keyforget.csv plugin/nessus/cleaned_numbers.csv data/all_cve-light.csv data/dictionary.csv data/nessus-kb.csv # Aggiungi tutti i file che vuoi includere nel commit.
+        git commit -m "Auto update nessus plugin and cve"
+        git push
