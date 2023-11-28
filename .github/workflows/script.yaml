@@ -1,23 +1,26 @@
-name: Task Scheduling and Python Script
+name: Update All
 
 on:
   schedule:
-    - cron: '0/10 * * * *'
+    - cron: '0/60 * * * *'
 
 jobs:
   execute:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out code
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run Python Script
+    - name: Update Nessus Plugin
       run: |
-        #invio una richiesta arbitraria per reperire il codice utilizzato per lanciare i js, copiato il codice lo salvo per fare le richieste get nel file update
-        curl -S https://www.tenable.com/plugins/nessus/186284 | grep -o "/_next/static/[A-Za-z0-9]\+/_buildManifest.js"| sed -e 's#/_next/static/##' -e 's#/_buildManifest.js##' > plugin/nessus/keyforget.csv
-        #scarico i nuovi numeri dei nuovi plugin
+        # Esegue la richiesta GET per ottenere il codice utilizzato per lanciare i js della get lo stesso codice funziona anche per altre get.
+        curl -S https://www.tenable.com/plugins/nessus/186284 | grep -o "/_next/static/[A-Za-z0-9]\+/_buildManifest.js" | sed -e 's#/_next/static/##' -e 's#/_buildManifest.js##' > plugin/nessus/keyforget.csv
+        
+        # Scarico i nuovi ID dei nuovi plugin.
         curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv
+        
+        
         python plugin/nessus/update.py
         python create_all_cve-light.py
         python createdictionary.py
