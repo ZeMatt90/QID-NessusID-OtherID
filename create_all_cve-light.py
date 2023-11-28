@@ -1,5 +1,4 @@
 import pandas as pd
-import re
 from tqdm import tqdm
 from colorama import Fore, Back, Style, init
 

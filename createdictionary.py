@@ -1,6 +1,6 @@
 import pandas as pd
 from tqdm import tqdm
-import re
+
 nessus_csv = "data/nessus-kb.csv"
 qualys_csv = "data/qualys-kb.csv"
 allcve_csv = "data/all_cve-light.csv"
