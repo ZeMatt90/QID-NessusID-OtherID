@@ -2,7 +2,7 @@ name: Update All
 
 on:
   schedule:
-    - cron: '0/60 * * * *'
+    - cron: '0/30 * * * *'
 jobs:
   execute:
     runs-on: ubuntu-latest
