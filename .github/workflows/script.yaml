@@ -32,14 +32,10 @@ jobs:
         python plugin/nessus/update.py
         python create_all_cve-light.py
         python createdictionary.py
-    name: Commit Changes
+    name: Commit & Push Changes
       run: |
         git config --global user.name 'ZeMatt90'
         git add plugin/nessus/keyforget.csv plugin/nessus/cleaned_numbers.csv data/all_cve-light.csv data/dictionary.csv data/nessus-kb.csv # Aggiungi tutti i file che vuoi includere nel commit.
         git commit -m "Auto update nessus plugin and cve"
-    name: Push Changes
-      run: |
-        #git remote add origin-with-creds https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
-        git remote add origin-with-creds https://$GITHUB_ACTOR:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY
         git push origin-with-creds HEAD:${{ github.ref }}
-        
+    
