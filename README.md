@@ -59,9 +59,17 @@ Questo è un progetto Python suddiviso in moduli distinti per una maggiore organ
 
 ## Moduli del Progetto
 
-### `process_data.py`
+### `plugin/nessus/update.py`
 
-Questo modulo gestisce la manipolazione dei dati e il dataframe del progetto. Include funzioni per leggere dati dai dataset, elaborare dati e creare/aggiornare il dataframe.
+Questo modulo aggiorna i dati relativi a Nessus
+
+### `create_all_cve-light.py`
+
+Questo modulo crea una lista di cve le quali sono presenti sia dai dati di Nessus che da Qualys
+
+### `createdictionary.py`
+
+Questo modulo crea un semplice dizionario di indici dove è possibile reperire in base alla cve l'id del plugin del rivenditore (Nessus o Qualys).
 
 ### `user_interface.py`
 
@@ -74,5 +82,5 @@ Questo modulo utilizza Streamlit per creare un'interfaccia utente interattiva pe
 Se pip install -r requirements.txt non è bastato una volta sistemato è possibile aggiornare i requirements
 	1.1 Aggiorna le dipendeze necessarie nel file requirements.txt eseguendo 'pip freeze > requirements.txt'
 
-2. Esegui BE `python3 main.py` per avviare il progetto.
+2. Esegui BE copiare il workflow di github
 3. Esegui FE `streamlit run user_interface.py`
