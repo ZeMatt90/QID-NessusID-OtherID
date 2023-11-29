@@ -1,3 +1,10 @@
+name: Update All
+
+on:
+  schedule:
+    - cron: '45 16 * * *'
+
+
 jobs:
   execute:
     runs-on: ubuntu-latest
