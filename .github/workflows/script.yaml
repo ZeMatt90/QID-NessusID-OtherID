@@ -2,7 +2,7 @@ name: Update All
 
 on:
   schedule:
-    - cron: '45 16 * * *'
+    - cron: '50 16 * * *'
 
 
 jobs:
@@ -42,3 +42,10 @@ jobs:
         git add plugin/nessus/keyforget.csv plugin/nessus/cleaned_numbers.csv data/all_cve-light.csv data/dictionary.csv data/nessus-kb.csv 
         git commit -m "Auto update nessus plugin and cve"
         git push origin-with-creds HEAD:${{ github.ref }}
+        if git push; then
+          echo "Operazione completata con successo"
+        else
+          echo "Errore durante l'operazione, verifica il log per ulteriori dettagli"
+          exit 1  
+        fi
+
