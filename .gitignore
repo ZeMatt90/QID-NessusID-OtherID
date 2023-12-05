@@ -1,3 +1,4 @@
 .vs/
 .vscode/
-
+# Ignora tutti i file .~lock nel repository
+*.~lock
