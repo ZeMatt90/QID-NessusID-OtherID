@@ -1,4 +1,5 @@
 import pandas as pd
+import csv
 from tqdm import tqdm
 
 nessus_csv = "data/nessus-kb.csv"
@@ -27,4 +28,5 @@ with tqdm(total=len(df_cve['CVE']), desc="Processing CVE", bar_format="{l_bar}{b
         bar.update(1)
 
 df_values = pd.DataFrame(nuove_righe)
-df_values.to_csv(dictionary_csv, index=False)
+#df_values.to_csv(dictionary_csv, index=False)
+df_values.to_csv(dictionary_csv, index=False, quoting=csv.QUOTE_NONE)

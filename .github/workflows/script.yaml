@@ -2,7 +2,7 @@ name: Update All
 
 on:
   schedule:
-    - cron: '15 17 * * *'
+    - cron: '47 0/8 * * *'
 
 
 jobs:
