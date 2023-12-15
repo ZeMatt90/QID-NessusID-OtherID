@@ -39,7 +39,7 @@ jobs:
       run: |
         git config --global user.name 'ZeMatt90'
         git config --global user.email 'zenit90+git@gmail.com'
-        git add plugin/nessus/keyforget.csv plugin/nessus/cleaned_numbers.csv data/all_cve-light.csv data/dictionary.csv data/nessus-kb.csv 
+        git add plugin/nessus/keyforget.csv plugin/nessus/full_id.csv plugin/nessus/cleaned_numbers.csv data/all_cve-light.csv data/dictionary.csv data/nessus-kb.csv 
         git commit -m "Auto update nessus plugin and cve"
         if git push; then
           echo "Operazione completata con successo"
