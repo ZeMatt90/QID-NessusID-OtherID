@@ -33,7 +33,7 @@ df_values = pd.DataFrame(nuove_righe)
 
 
 # Carica il file CSV
-df = pd.read_csv('tuo_file.csv')
+df = pd.read_csv(allcve_csv)
 
 # Estrai la parte numerica dell'ID
 df['Numero'] = df['ID'].str.extract('-(\d+)$').astype(int)
