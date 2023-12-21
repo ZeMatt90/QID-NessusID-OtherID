@@ -2,3 +2,5 @@
 .vscode/
 # Ignora tutti i file .~lock nel repository
 *.~lock
+#file troppo grande da poter caricare
+data/nessus-full.csv 

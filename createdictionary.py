@@ -4,8 +4,8 @@ from tqdm import tqdm
 
 nessus_csv = "data/nessus-kb.csv"
 qualys_csv = "data/qualys-kb.csv"
-allcve_csv = "data/all_cve-light.csv"
-dictionary_csv = "data/dictionary-light.csv"
+allcve_csv = "data/all_cve.csv"
+dictionary_csv = "data/dictionary.csv"
 
 df_nessus = pd.read_csv(nessus_csv, usecols=['cves', 'doc_id'])
 df_qualys = pd.read_csv(qualys_csv, usecols=['CVE ID', 'QID'])
@@ -21,8 +21,8 @@ with tqdm(total=len(df_cve['CVE']), desc="Processing CVE", bar_format="{l_bar}{b
         
         qualys_values = df_qualys[df_qualys['CVE ID'].str.split(',').apply(lambda x: cve_value in x)]['QID'].tolist()
         nessus_values = df_nessus[df_nessus['cves'].str.split(',').apply(lambda x: cve_value in x)]['doc_id'].tolist()
-        if nessus_values != [] and qualys_values !=[]:
-            nuove_righe.append({'CVE': cve_value, 'QID': qualys_values, 'doc_id': nessus_values})
+        #if nessus_values != [] and qualys_values !=[]:
+        nuove_righe.append({'CVE': cve_value, 'QID': qualys_values, 'doc_id': nessus_values})
         #print("\n qualys\n",qualys_values,df_qualys['CVE ID'].str.split(',').apply(lambda x: cve_value in x))
         #print("\n nessus\n",nessus_values)
         bar.update(1)
