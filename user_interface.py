@@ -48,7 +48,7 @@ def main():
     st.write('A Tiny Example of Data from Dummy Things')
 
     data_files = {
-        "Arcadia": "./data/dictionary.csv",
+        "Arcadia": "./data/dictionary-light.csv",
         "Qualys": "./data/qualys-light.csv",
         "Nessus": "./data/nessus-light.csv"
     }

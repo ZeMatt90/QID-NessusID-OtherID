@@ -31,7 +31,7 @@ df_values = pd.DataFrame(nuove_righe)
 
 
 
-
+"""
 # Carica il file CSV
 df = pd.read_csv(allcve_csv)
 
@@ -48,7 +48,7 @@ df = df.drop(columns=['Numero', 'Numero_Formattato'])
 
 # Salva il DataFrame ordinato in un nuovo file CSV
 df.to_csv('tuo_file_ordinato.csv', index=False)
-
+"""
 
 
 df_values.to_csv(dictionary_csv, index=False)
