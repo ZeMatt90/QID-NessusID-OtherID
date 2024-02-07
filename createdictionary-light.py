@@ -30,7 +30,6 @@ with tqdm(total=len(df_cve['CVE']), desc="Processing CVE", bar_format="{l_bar}{b
 df_values = pd.DataFrame(nuove_righe)
 
 
-
 """
 # Carica il file CSV
 df = pd.read_csv(allcve_csv)
