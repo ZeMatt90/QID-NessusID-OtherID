@@ -22,7 +22,7 @@ with tqdm(total=len(df_cve['CVE']), desc="Processing CVE", bar_format="{l_bar}{b
         qualys_values = df_qualys[df_qualys['CVE ID'].str.split(',').apply(lambda x: cve_value in x)]['QID'].tolist()
         nessus_values = df_nessus[df_nessus['cves'].str.split(',').apply(lambda x: cve_value in x)]['doc_id'].tolist()
         if nessus_values != [] and qualys_values !=[]:
-            nuove_righe.append({'CVE': cve_value, 'QID': qualys_values, 'doc_id': nessus_values})
+            nuove_righe.append({'CVE': cve_value, 'QID': qualys_values, 'doc_id': nessus_values,'doc_id': nessus_values})
         #print("\n qualys\n",qualys_values,df_qualys['CVE ID'].str.split(',').apply(lambda x: cve_value in x))
         #print("\n nessus\n",nessus_values)
         bar.update(1)
