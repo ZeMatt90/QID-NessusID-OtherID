@@ -9,6 +9,8 @@ import time
 from difflib import SequenceMatcher
 
 
+### prova multiprocessingg
+
 def process_data_chunk(df_chunk, df2_complete, nuove_righe, idarcadia):
     try:
         with tqdm(total=len(df_cve['CVE']), desc="Processing CVE", bar_format="{l_bar}{bar:10}{r_bar}{remaining}") as bar:
