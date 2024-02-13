@@ -25,24 +25,6 @@
   <a href="https://github.com/ZeMatt90?tab=repositories" target="_blank"><img alt="All Repositories" title="All Repositories" src="https://img.shields.io/badge/-All%20Repos-2962FF?style=for-the-badge&logo=koding&logoColor=white"/></a>
 </p>
 
-<br/>
-<hr/>
-<br/>
-
-
-<p align="center">
-  <a href="https://github.com/ZeMatt90/QID-NessusID-OtherID">
-    <img src="https://github-readme-streak-stats.herokuapp.com/?user=ZeMatt90&theme=radical&border=7F3FBF&background=0D1117" alt="Saif's GitHub streak"/>
-  </a>
-</p>
-<p align="center">
-  <a href="https://github.com/ZeMatt90/QID-NessusID-OtherID">
-    <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=ZeMatt90&theme=radical" alt="ZeMatt90's GitHub Contribution"/>
-  </a>
-</p>
-
-
-
 
 # QID-NessusID-OtherID Project
 
