@@ -33,7 +33,8 @@ jobs:
         python plugin/nessus/update.py
         python create_all_cve-light.py
         python createdictionary-light.py
-    
+        python controller_check_data.py
+        
     - name: Commit & Push Changes
       run: |
         git config --global user.name 'ZeMatt90'
