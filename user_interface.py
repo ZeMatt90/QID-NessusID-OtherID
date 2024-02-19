@@ -4,9 +4,25 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px 
 
+#from transformers import pipeline
+
+# Carica il modello di linguaggio pre-addestrato
+#chatbot = pipeline("conversational")
+
+
+
 class UserInterface:
     def __init__(self, df):
         self.df = df
+    # Funzione per eseguire la chat con l'IA
+    # def chat_with_ai(self):
+    #     user_input = st.text_input("Tu:")
+    #     if user_input:
+    #         # Genera una risposta dall'IA
+    #         bot_response = chatbot(user_input)[0]['generated_text']
+    #         # Visualizza la risposta dell'IA
+    #         st.text_area("AI:", bot_response, height=100)
+
 
     def show_data_page(self, title):
         st.title(title)
@@ -25,10 +41,12 @@ class UserInterface:
                     fig = px.pie(correlazione_chart_data['count'], labels=correlazione_chart_data['QID'].astype(str) + '-' + correlazione_chart_data['doc_id'].astype(str))
                     st.plotly_chart(fig)
 
+
+#'info': ""
                      # Aggiungi l'opzione per modificare la colonna CVE
                     nuova_cve = st.text_input("Modifica la CVE", cve_selezionata)
                     if st.button("Salva modifiche"):
-                        self.df.loc[self.df['CVE'] == cve_selezionata, 'Solution'] = nuova_cve
+                        self.df.loc[self.df['info'] == cve_selezionata, 'Solution'] = nuova_cve
 
         else:
             colonna_selezionata = st.sidebar.selectbox("Seleziona una tipologia", self.df.columns)

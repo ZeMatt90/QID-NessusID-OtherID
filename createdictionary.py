@@ -19,7 +19,7 @@ def process_data_chunk(df_chunk, df2_complete, nuove_righe, idarcadia):
                 qualys_values = df_qualys[df_qualys['CVE ID'].str.split(',').apply(lambda x: cve_value in x)]['QID'].tolist()
                 nessus_values = df_nessus[df_nessus['cves'].str.split(',').apply(lambda x: cve_value in x)]['doc_id'].tolist()
                 #if nessus_values != [] and qualys_values !=[]:
-                nuove_righe.append({'CVE': cve_value, 'QID': qualys_values, 'doc_id': nessus_values})
+                nuove_righe.append({'CVE': cve_value, 'QID': qualys_values, 'doc_id': nessus_values,'info': ""})
                 #print("\n qualys\n",qualys_values,df_qualys['CVE ID'].str.split(',').apply(lambda x: cve_value in x))
                 #print("\n nessus\n",nessus_values)
                 bar.update(1)
