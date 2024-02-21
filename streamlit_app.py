@@ -29,7 +29,7 @@ class UserInterface:
         #st.write('A Tiny Example of Data')
         if title == "Arcadia Page":
                                         
-                    cve_list = list(self.df['CVE'].unique())  
+                    #cve_list = list(self.df['CVE'].unique())  
                     search_input = st.sidebar.text_input("Cerca una CVE", '')
                     data_filtrati = self.df[self.df['CVE'].str.contains(search_input)]
 
