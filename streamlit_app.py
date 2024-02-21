@@ -28,19 +28,18 @@ class UserInterface:
         st.title(title)
         #st.write('A Tiny Example of Data')
         if title == "Arcadia Page":
-                    cve_selezionata = st.sidebar.selectbox("Seleziona una CVE", self.df['CVE'].unique())
-                    #data_filtrati = self.df[self.df['CVE'] == cve_selezionata]
-                    #data_filtrati = self.df['CVE'] == cve_selezionata
-                    data_filtrati = self.df
+                                        
+                    cve_list = list(self.df['CVE'].unique())  
+                    search_input = st.sidebar.text_input("Cerca una CVE", '')
+                    data_filtrati = self.df[self.df['CVE'].str.contains(search_input)]
 
-                    st.subheader(f"Dati relativi alla CVE: {cve_selezionata}")
                     st.dataframe(data_filtrati)
 
-                    st.subheader("Correlazione tra QID e DOC_ID")
+                    '''st.subheader("Correlazione tra QID e DOC_ID")
                     correlazione_chart_data = data_filtrati.groupby(['QID', 'doc_id']).size().reset_index(name='count')
                     fig = px.pie(correlazione_chart_data['count'], labels=correlazione_chart_data['QID'].astype(str) + '-' + correlazione_chart_data['doc_id'].astype(str))
                     st.plotly_chart(fig)
-
+                    '''
                     st.subheader("Conteggio delle occorrenze QIDper ogni CVE")
                     # Conta il numero di QID in ciascuna lista di QID per ogni CVE
                     conteggio_qid_per_cve = self.df['QID'].apply(len)
@@ -51,13 +50,13 @@ class UserInterface:
                     conteggio_qid_per_cve = self.df['doc_id'].apply(len)
                     st.bar_chart(conteggio_qid_per_cve.value_counts())
 
-
-#'info': ""
+                    '''
+                    #'info': ""
                      # Aggiungi l'opzione per modificare la colonna CVE
                     nuova_cve = st.text_input("Modifica la CVE", cve_selezionata)
                     if st.button("Salva modifiche"):
                         self.df.loc[self.df['info'] == cve_selezionata, 'Solution'] = nuova_cve
-
+                    '''
         else:
             colonna_selezionata = st.sidebar.selectbox("Seleziona una tipologia", self.df.columns)
             filtro_opzioni = self.df[colonna_selezionata].unique()
