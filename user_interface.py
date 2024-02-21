@@ -41,6 +41,16 @@ class UserInterface:
                     fig = px.pie(correlazione_chart_data['count'], labels=correlazione_chart_data['QID'].astype(str) + '-' + correlazione_chart_data['doc_id'].astype(str))
                     st.plotly_chart(fig)
 
+                    st.subheader("Conteggio delle occorrenze QIDper ogni CVE")
+                    # Conta il numero di QID in ciascuna lista di QID per ogni CVE
+                    conteggio_qid_per_cve = self.df['QID'].apply(len)
+                    st.bar_chart(conteggio_qid_per_cve.value_counts())
+
+                    st.subheader("Conteggio delle occorrenze Nessus per ogni CVE")
+                    # Conta il numero di QID in ciascuna lista di QID per ogni CVE
+                    conteggio_qid_per_cve = self.df['doc_id'].apply(len)
+                    st.bar_chart(conteggio_qid_per_cve.value_counts())
+
 
 #'info': ""
                      # Aggiungi l'opzione per modificare la colonna CVE
