@@ -15,8 +15,23 @@ df_nuovo = pd.read_csv(file_newid, header=None)
 df_full = pd.read_csv(file_full, header=None)
 df_key = pd.read_csv('plugin/nessus/keyforget.csv' , header=None)
 keyforget= df_key.iloc[0, 0]
+
+# Verifica dei dati caricati
+print("Contenuto di df_nuovo:")
+print(df_nuovo.head())
+
+print("Contenuto di df_full:")
+print(df_full.head())
+
 numeri_esistenti = df_full.values.flatten().tolist()
 numeri_nuovi = df_nuovo.values.flatten().tolist()
+
+print("Numeri esistenti:")
+print(numeri_esistenti)
+
+print("Numeri nuovi:")
+print(numeri_nuovi)
+
 
 #carico i nuovi id da scaricare, che non sono presenti in full_id.csv
 IDs = [numero for numero in numeri_nuovi if numero not in numeri_esistenti]

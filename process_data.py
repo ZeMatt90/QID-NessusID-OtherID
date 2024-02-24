@@ -13,10 +13,10 @@ def process_data_chunk(df_chunk, df2_complete, result_queue, idarcadia):
                 cve1 = str(row1.get('CVE ID', ''))
                 cve2 = str(row2.get('cves', []))
              
-               # Calcola la similarità tra i valori utilizzando SequenceMatcher
+               # similarità tra i valori utilizzando SequenceMatcher
                 similarity_cveid = SequenceMatcher(None, cve1, cve2).ratio()
                 
-                # Calcola una misura complessiva di similarità basata sulle due chiavi
+                # misura complessiva di similarità basata sulle due chiavi
                 overall_similarity = (similarity_cveid )#+ similarity_cves) / 2
 
                 if overall_similarity>0.79:
@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
         for process in processes:    
             process.join()
-         # Imposta la condizione di uscita in modo che il processo principale esca in modo pulito
+         # condizione di uscita in modo che il processo principale esca in modo pulito
         should_exit = True
 
 
@@ -93,7 +93,7 @@ if __name__ == '__main__':
         print("istanziati i dati e caricati in memoria al modico prezzo di %s byte",sys.getsizeof(df_chunks))
         total_memory_usage = 0
         for df in [data_handler.nessusdata, data_handler.qualysdata, data_handler.arcadiadata]:
-          total_memory_usage += df.memory_usage(deep=True).sum()  # Calcola la dimensione effettiva dei DataFrame
+          total_memory_usage += df.memory_usage(deep=True).sum()  #dimensione effettiva dei DataFrame
         print(f"Dimensione totale: {total_memory_usage} byte")
 
         print(f'Serial execution took {time_end - time_init}s.')
