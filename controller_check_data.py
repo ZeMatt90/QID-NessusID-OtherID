@@ -31,18 +31,18 @@ def checkdf (dfcheck, key=None):
 
 
 # Verifica e rimozione duplicati in df_fullidnessus
-print("IDnessus")
+print("\n*********************\nIDnessus")
 checkdf(df_fullidnessus).to_csv(file_fullidnessus, index=False)
 # Verifica e rimozione duplicati in df_nessus
-print("nessus doc_id")
+print("\n*********************\nnessus doc_id")
 checkdf(df_nessus,'doc_id').to_csv(file_nessus, index=False)
 # Verifica e rimozione duplicati in df_qualys
-print("qualys qid")
+print("\n*********************\nqualys qid")
 checkdf(df_qualys,'QID').to_csv(file_qualys, index=False)
 # Verifica e rimozione duplicati in df_dictionary_light
-print("dictionary cve")
+print("\n*********************\ndictionary cve")
 checkdf(df_dictionary_light,'CVE').to_csv(file_dictionary_light, index=False)
 # Pulizia dati sporchi Nessus
 #df_nessus  = re.sub('[\'\[\]]', '', str(plugin_data['cves']))
-print("all cve")
+print("\n*********************\nall cve")
 checkdf(df_allcve).to_csv(file_allcve, index=False)
