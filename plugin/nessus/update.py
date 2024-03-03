@@ -60,9 +60,10 @@ try:
 except Exception as e:
     print(f"curl on {str(ID)} ha generato un errore: {str(e)}")
 finally:
-    print("TODO gestione salvataggio parziale")
+    print("salvataggio degli aggiornamenti effettuati")
     df_full.to_csv(file_full, header=False, index=False)
 
     df = pd.concat([pd.DataFrame(json_data_list), pd.read_csv(file_nessus)], ignore_index=True, sort=False)
     #df = pd.DataFrame(json_data_list) 
     df.to_csv(file_nessus, index=False)
+
