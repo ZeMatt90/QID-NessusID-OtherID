@@ -7,6 +7,7 @@ file_nessus = "data/nessus-kb.csv"
 file_qualys = "data/qualys-kb.csv"
 file_dictionary_light = "data/dictionary-light.csv"
 
+
 # Carico i DataFrame
 df_fullidnessus = pd.read_csv(file_fullidnessus, header=None)
 df_allcve = pd.read_csv(file_allcve)
@@ -31,8 +32,20 @@ def checkdf (dfcheck, key=None):
 
 
 # Verifica e rimozione duplicati in df_fullidnessus
+df_deduplicated = df_fullidnessus.drop_duplicates()
+# Rimozione dei decimali uguali a zero
+#df_deduplicated = df_deduplicated.applymap(lambda x: int(x) if x == int(x) else x)
+# Unione di tutte le colonne in una singola colonna
+result_df = df_deduplicated.stack().reset_index(drop=True)
+
+
+#  salvataggio su file CSV
 print("\n*********************\nIDnessus")
-checkdf(df_fullidnessus).to_csv(file_fullidnessus, index=False)
+#checkdf(df_fullidnessus).to_csv(file_fullidnessus, index=False)
+
+
+
+
 # Verifica e rimozione duplicati in df_nessus
 print("\n*********************\nnessus doc_id")
 checkdf(df_nessus,'doc_id').to_csv(file_nessus, index=False)

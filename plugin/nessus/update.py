@@ -11,8 +11,8 @@ file_newid= "plugin/nessus/cleaned_numbers.csv"
 file_full= "plugin/nessus/full_id.csv"
 file_nessus = "data/nessus-kb.csv"
 
-df_nuovo = pd.read_csv(file_newid, header=None)
-df_full = pd.read_csv(file_full, header=None)
+df_nuovo = pd.read_csv(file_newid, header=None,dtype=int)
+df_full = pd.read_csv(file_full, header=None,dtype=int)
 df_key = pd.read_csv('plugin/nessus/keyforget.csv' , header=None)
 keyforget= df_key.iloc[0, 0]
 
@@ -45,9 +45,9 @@ try:
             # Aggiungi l'oggetto JSON pulito alla lista
             json_data_list.append(plugin_data)
 
-            new_id_inserito = pd.DataFrame([str(ID)], columns=['cves'])
+            new_id_inserito = pd.DataFrame([ID], columns=['cves'])
             
-            new_id_inserito['cves'] = new_id_inserito['cves'].astype(str)
+            new_id_inserito['cves'] = new_id_inserito['cves'].astype(int)
 
             # Aggiungo l'id tra quelli già presenti principale
             df_full = pd.concat([df_full, new_id_inserito], ignore_index=True)
@@ -61,6 +61,7 @@ except Exception as e:
     print(f"curl on {str(ID)} ha generato un errore: {str(e)}")
 finally:
     print("salvataggio degli aggiornamenti effettuati")
+    
     df_full.to_csv(file_full, header=False, index=False)
 
     df = pd.concat([pd.DataFrame(json_data_list), pd.read_csv(file_nessus)], ignore_index=True, sort=False)
