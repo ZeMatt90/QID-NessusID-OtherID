@@ -1,29 +1,23 @@
-import requests
-import json
 import pandas as pd
-import re
 import asyncio
 import aiohttp
 """
 prima di lanciare questo assicurarsi di aver aggiornato il file cleaned numerbers.csv tramite
 curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > cleaned_numbers.csv
 """
+base_url = ""
 
 async def fetch_url(session, url):
     async with session.get(url) as response:
-        if response.status == 200:
-            plugin_data = await response.json()
-            plugin_data = plugin_data.get("pageProps").get("plugin")
-            cves_tmp = re.sub('[\'\[\]]', '', str(plugin_data['cves']))
-            plugin_data['cves'] = cves_tmp
-            return plugin_data
-        else:
-            print(f"La richiesta non è riuscita per l'URL {url}. Codice di stato:", response.status)
-
-async def async_fetch_all(urls):
+        data = await response.json()
+        print(f"\nandato\n{url}\n")
+        return data.get("pageProps").get("plugin")
+    
+async def async_version(urls):
     async with aiohttp.ClientSession() as session:
         tasks = [fetch_url(session, url) for url in urls]
         return await asyncio.gather(*tasks)
+
 
 async def main():
     file_newid= "plugin/nessus/cleaned_numbers.csv"
@@ -47,7 +41,7 @@ async def main():
 
     try:
         urls = [base_url.replace("NUMEROID", str(ID)) for ID in IDs]
-        results = await async_fetch_all(urls)
+        results = await async_version(urls)
         
         for plugin_data in results:
             if plugin_data is not None:
@@ -56,19 +50,15 @@ async def main():
                 new_id_inserito['cves'] = new_id_inserito['cves'].astype(int)
                 df_full = pd.concat([df_full, new_id_inserito], ignore_index=True)
                 print(str(new_id_inserito['cves'].tolist()) + " andato\n")
-    
-
             else:
                 print("plugin data none")
     except Exception as e:
-        print(f"un errore generico : {str(e)}")
+        print(f"Errore: {str(e)}")
     finally:
-        print("salvataggio degli aggiornamenti effettuati")
-        
+        print("Salvataggio degli aggiornamenti effettuati")
         df_full.to_csv(file_full, header=False, index=False)
-
         df = pd.concat([pd.DataFrame(json_data_list), pd.read_csv(file_nessus)], ignore_index=True, sort=False)
-        #df = pd.DataFrame(json_data_list) 
         df.to_csv(file_nessus, index=False)
+
 
 asyncio.run(main())
