@@ -53,17 +53,19 @@ async def main():
         results = await async_version(urls)
         
         for ID in results:
+            print(f"manage:{ID['doc_id']}, ")
             if ID is not None:
                 json_data_list.append(ID)
+                
                 new_id_inserito = pd.DataFrame([ID], columns=['doc_id'])
                 #new_id_inserito['cves'] = new_id_inserito['cves'].astype(int)
                 df_full = pd.concat([df_full, new_id_inserito], ignore_index=True)
-                print(str(new_id_inserito['cves'].tolist()) + " andato\n")
+                print(str(new_id_inserito['doc_id'].tolist()) + "*inserito.")
             else:
                 print("plugin data none")
     except Exception as e:
         print(f"Errore: {str(e)}")
-        print(f"curl on {str(ID['doc_id'])} ha generato un errore: {str(e)}")
+        #print(f"curl on {str(ID['doc_id'])} ha generato un errore: {str(e)}")
     finally:
         print("Salvataggio degli aggiornamenti effettuati")
         df_full.to_csv(file_full, header=False, index=False)
