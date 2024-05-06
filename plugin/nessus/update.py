@@ -57,10 +57,10 @@ async def main():
             if ID is not None:
                 json_data_list.append(ID)
                 
-                new_id_inserito = pd.DataFrame([ID], columns=['doc_id'])
+                #new_id_inserito = pd.DataFrame([ID], columns=['doc_id'])
                 #new_id_inserito['cves'] = new_id_inserito['cves'].astype(int)
-                df_full = pd.concat([df_full, new_id_inserito], ignore_index=True)
-                print(str(new_id_inserito['doc_id'].tolist()) + "*inserito.")
+                df_full = pd.concat([df_full, ID['doc_id']], ignore_index=True)
+                print(str(ID['doc_id']) + "*inserito.")
             else:
                 print("plugin data none")
     except Exception as e:
