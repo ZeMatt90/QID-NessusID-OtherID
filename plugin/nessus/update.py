@@ -33,16 +33,13 @@ async def main():
     file_full= "plugin/nessus/full_id.csv"
     file_nessus = "data/nessus-kb.csv"
     
-    df_nuovo = pd.read_csv(file_newid, header=None,dtype=int)
+    ds_nuovo = pd.read_csv(file_newid, header=None,dtype=int).iloc[:, 0] #.iloc[:, 0] serve per salvare un pandas.Series e non dataframe
     ds_full  = pd.read_csv(file_full, header=None,dtype=int).iloc[:, 0]
     df_key = pd.read_csv('plugin/nessus/keyforget.csv' , header=None)
     keyforget= df_key.iloc[0, 0]
 
-    numeri_esistenti = ds_full
-    numeri_nuovi = df_nuovo.values.flatten().tolist()
-
     #carico i nuovi id da scaricare, che non sono presenti in full_id.csv
-    IDs = [numero for numero in numeri_nuovi if numero not in numeri_esistenti]
+    IDs = [numero for numero in ds_nuovo if numero not in ds_full]
     print("\n nuovi numeri da aggiungere\n\n")
     print(IDs)
     base_url = "https://www.tenable.com/_next/data/"+str(keyforget)+"/en/plugins/nessus/NUMEROID.json?type=nessus&id=NUMEROID"
@@ -52,15 +49,15 @@ async def main():
         urls = [base_url.replace("NUMEROID", str(ID)) for ID in IDs]
         results = await async_version(urls)
         
-        for ID in results:
-            print(f"manage:{ID['doc_id']}, ")
-            if ID is not None:
-                json_data_list.append(ID)
+        for result in results:
+            print(f"manage:{result['doc_id']}, ")
+            if result is not None:
+                json_data_list.append(result)
                 
-                new_id_inserito = pd.DataFrame([ID], columns=['doc_id'])
+                #new_id_inserito = pd.DataFrame([ID], columns=['doc_id'])
                 #new_id_inserito['cves'] = new_id_inserito['cves'].astype(int)
-                ds_full += pd.Series(ID['doc_id'])#concat([ds_full, new_id_inserito], ignore_index=True)
-                print(str(ID['doc_id']) + "*inserito.")
+                ds_full.add(pd.Series(int(result['doc_id'])))#concat([ds_full, new_id_inserito], ignore_index=True)
+                print(str(result['doc_id']) + "*inserito.")
             else:
                 print("plugin data none")
     except Exception as e:
