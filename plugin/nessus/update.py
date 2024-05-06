@@ -34,11 +34,11 @@ async def main():
     file_nessus = "data/nessus-kb.csv"
     
     df_nuovo = pd.read_csv(file_newid, header=None,dtype=int)
-    df_full = pd.read_csv(file_full, header=None,dtype=int)
+    ds_full  = pd.read_csv(file_full, header=None,dtype=int).iloc[:, 0]
     df_key = pd.read_csv('plugin/nessus/keyforget.csv' , header=None)
     keyforget= df_key.iloc[0, 0]
 
-    numeri_esistenti = df_full.values.flatten().tolist()
+    numeri_esistenti = ds_full
     numeri_nuovi = df_nuovo.values.flatten().tolist()
 
     #carico i nuovi id da scaricare, che non sono presenti in full_id.csv
@@ -57,9 +57,9 @@ async def main():
             if ID is not None:
                 json_data_list.append(ID)
                 
-                #new_id_inserito = pd.DataFrame([ID], columns=['doc_id'])
+                new_id_inserito = pd.DataFrame([ID], columns=['doc_id'])
                 #new_id_inserito['cves'] = new_id_inserito['cves'].astype(int)
-                df_full = pd.concat([df_full, ID['doc_id']], ignore_index=True)
+                ds_full += pd.Series(ID['doc_id'])#concat([ds_full, new_id_inserito], ignore_index=True)
                 print(str(ID['doc_id']) + "*inserito.")
             else:
                 print("plugin data none")
@@ -68,7 +68,7 @@ async def main():
         #print(f"curl on {str(ID['doc_id'])} ha generato un errore: {str(e)}")
     finally:
         print("Salvataggio degli aggiornamenti effettuati")
-        df_full.to_csv(file_full, header=False, index=False)
+        ds_full.to_csv(file_full, header=False, index=False)
 
         df = pd.concat([pd.DataFrame(json_data_list), pd.read_csv(file_nessus)], ignore_index=True, sort=False)
         df.to_csv(file_nessus, index=False)
