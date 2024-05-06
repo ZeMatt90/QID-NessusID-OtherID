@@ -32,7 +32,7 @@ async def main():
     file_newid= "plugin/nessus/cleaned_numbers.csv"
     file_full= "plugin/nessus/full_id.csv"
     file_nessus = "data/nessus-kb.csv"
-
+    
     df_nuovo = pd.read_csv(file_newid, header=None,dtype=int)
     df_full = pd.read_csv(file_full, header=None,dtype=int)
     df_key = pd.read_csv('plugin/nessus/keyforget.csv' , header=None)
