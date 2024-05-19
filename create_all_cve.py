@@ -39,10 +39,18 @@ merged_df = merged_df.drop_duplicates(subset='CVE')
 
 
 
-merged_df.to_csv(allcve_csv, index=False)
+# Unione dei dataframes e rimozione dei duplicati
+merged_df = pd.concat([df_qualys_values, df_nessus_values], ignore_index=True)
+merged_df = merged_df.drop_duplicates(subset='CVE')
+#old merged_df.to_csv(allcve_csv, index=False)
 
 
+# Caricamento del dataframe all_cve
+df_all_cve = pd.read_csv(allcve_csv)
 
+# Aggiunta delle colonne Uptime e Updated
+uptime = []
+updated = []
 
 for _, row in df_all_cve.iterrows():
     cve = row['CVE']

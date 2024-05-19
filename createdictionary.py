@@ -52,3 +52,5 @@ df_values = pd.DataFrame([x for x in nuove_righe if x is not None])
 
 df_values.to_csv("data/dictionary.csv", index=False)
 df_cve.to_csv("data/all_cve.csv", index=False)
+
+
