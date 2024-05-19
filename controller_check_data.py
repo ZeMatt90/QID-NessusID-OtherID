@@ -5,7 +5,7 @@ file_fullidnessus = "plugin/nessus/full_id.csv"
 file_allcve="data/all_cve.csv"
 file_nessus = "data/nessus-kb.csv"
 file_qualys = "data/qualys-kb.csv"
-file_dictionary_light = "data/dictionary-light.csv"
+file_dictionary_light = "data/dictionary.csv"
 
 
 # Carico i DataFrame

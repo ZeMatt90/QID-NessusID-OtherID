@@ -31,8 +31,8 @@ jobs:
         curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv
         
         python plugin/nessus/update.py
-        python create_all_cve-light.py
-        python createdictionary-light.py
+        python create_all_cve.py
+        python createdictionary.py
         python controller_check_data.py
         
     - name: Commit & Push Changes
