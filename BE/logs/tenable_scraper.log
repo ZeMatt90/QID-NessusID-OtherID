@@ -1,0 +1,12 @@
+2024-06-11 22:06:32,618 - TenableScraper - INFO - Starting fetch_and_process_build_manifest
+2024-06-11 22:06:33,217 - TenableScraper - INFO - Data written to plugin/nessus/keyforget.csv
+2024-06-11 22:06:33,218 - TenableScraper - INFO - Finished fetch_and_process_build_manifest
+2024-06-11 22:06:33,218 - TenableScraper - INFO - Starting fetch_and_process_plugin_numbers
+2024-06-11 22:06:33,360 - TenableScraper - INFO - Data written to plugin/nessus/cleaned_numbers.csv
+2024-06-11 22:06:33,361 - TenableScraper - INFO - Finished fetch_and_process_plugin_numbers
+2024-06-12 09:28:08,956 - TenableScraper - INFO - Starting fetch_and_process_build_manifest
+2024-06-12 09:28:09,282 - TenableScraper - INFO - Data written to plugin/nessus/keyforget.csv
+2024-06-12 09:28:09,282 - TenableScraper - INFO - Finished fetch_and_process_build_manifest
+2024-06-12 09:28:09,283 - TenableScraper - INFO - Starting fetch_and_process_plugin_numbers
+2024-06-12 09:28:09,581 - TenableScraper - INFO - Data written to plugin/nessus/cleaned_numbers.csv
+2024-06-12 09:28:09,581 - TenableScraper - INFO - Finished fetch_and_process_plugin_numbers

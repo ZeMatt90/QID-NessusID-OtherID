@@ -24,16 +24,18 @@ jobs:
 
     - name: Update Nessus Plugin
       run: |
-        # Esegue la richiesta GET per ottenere il codice utilizzato per lanciare i js della get lo stesso codice funziona anche per altre get.
-        curl -S https://www.tenable.com/plugins/nessus/186284 | grep -o "/_next/static/[^/]\+/_buildManifest.js" | sed -e 's#/_next/static/##' -e 's#/_buildManifest.js##' > plugin/nessus/keyforget.csv
+        # # Esegue la richiesta GET per ottenere il codice utilizzato per lanciare i js della get lo stesso codice funziona anche per altre get.
+        # curl -S https://www.tenable.com/plugins/nessus/186284 | grep -o "/_next/static/[^/]\+/_buildManifest.js" | sed -e 's#/_next/static/##' -e 's#/_buildManifest.js##' > plugin/nessus/keyforget.csv
         
-        # Scarico i nuovi ID dei nuovi plugin
-        curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv
+        # # Scarico i nuovi ID dei nuovi plugin
+        # curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv
         
-        python plugin/nessus/update.py
-        python create_all_cve.py
-        python createdictionary.py
-        python controller_check_data.py
+        python main.py
+
+        # python plugin/nessus/update.py
+        # python create_all_cve.py
+        # python createdictionary.py
+        # python controller_check_data.py
         #comando unico eventuale
         #curl -S https://www.tenable.com/plugins/nessus/186284 | grep -o "/_next/static/[^/]\+/_buildManifest.js" | sed -e 's#/_next/static/##' -e 's#/_buildManifest.js##' > plugin/nessus/keyforget.csv && curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv && python3 plugin/nessus/update.py && python3 create_all_cve.py && python3 createdictionary.py && python3 controller_check_data.py
 

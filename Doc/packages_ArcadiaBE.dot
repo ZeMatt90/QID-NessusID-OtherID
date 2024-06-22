@@ -1,0 +1,25 @@
+digraph "packages_ArcadiaBE" {
+rankdir=BT
+charset="utf-8"
+"BE" [color="black", label=<BE>, shape="box", style="solid"];
+"BE.arcadia_dictionary" [color="black", label=<BE.arcadia_dictionary>, shape="box", style="solid"];
+"BE.create_all_cve-light" [color="black", label=<BE.create_all_cve-light>, shape="box", style="solid"];
+"BE.createdictionary-light" [color="black", label=<BE.createdictionary-light>, shape="box", style="solid"];
+"BE.createdictionary_verbose" [color="black", label=<BE.createdictionary_verbose>, shape="box", style="solid"];
+"BE.cve_updater" [color="black", label=<BE.cve_updater>, shape="box", style="solid"];
+"BE.data_cleaner" [color="black", label=<BE.data_cleaner>, shape="box", style="solid"];
+"BE.main" [color="black", label=<BE.main>, shape="box", style="solid"];
+"BE.main_module" [color="black", label=<BE.main_module>, shape="box", style="solid"];
+"BE.merge2csv" [color="black", label=<BE.merge2csv>, shape="box", style="solid"];
+"BE.plugin" [color="black", label=<BE.plugin>, shape="box", style="solid"];
+"BE.plugin.nessus" [color="black", label=<BE.plugin.nessus>, shape="box", style="solid"];
+"BE.plugin.nessus.parallaxrequest_sample" [color="black", label=<BE.plugin.nessus.parallaxrequest_sample>, shape="box", style="solid"];
+"BE.plugin.nessus.tenable_scraper" [color="black", label=<BE.plugin.nessus.tenable_scraper>, shape="box", style="solid"];
+"BE.plugin.nessus.update" [color="black", label=<BE.plugin.nessus.update>, shape="box", style="solid"];
+"BE.process_data" [color="black", label=<BE.process_data>, shape="box", style="solid"];
+"BE.main" -> "BE.arcadia_dictionary" [arrowhead="open", arrowtail="none"];
+"BE.main" -> "BE.cve_updater" [arrowhead="open", arrowtail="none"];
+"BE.main" -> "BE.data_cleaner" [arrowhead="open", arrowtail="none"];
+"BE.main" -> "BE.plugin.nessus.update" [arrowhead="open", arrowtail="none"];
+"BE.plugin.nessus.update" -> "BE.plugin.nessus.tenable_scraper" [arrowhead="open", arrowtail="none"];
+}
