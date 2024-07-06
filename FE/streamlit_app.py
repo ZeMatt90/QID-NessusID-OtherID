@@ -23,18 +23,13 @@ class UserInterface:
     #         # Visualizza la risposta dell'IA
     #         st.text_area("AI:", bot_response, height=100)
     def run_update(self):
-        with open("./plugin/nessus/update.py", 'r') as f:
+        with open("../BE/plugin/nessus/update.py", 'r') as f:
             code = f.read()
             exec(code)
 
     def show_data_page(self, title):
         st.title(title)
-        '''
-        python plugin/nessus/update.py
-        python create_all_cve-light.py
-        python createdictionary-light.py
-        python controller_check_data.py
-        '''
+        
         if st.button("Update"):
             self.run_update()
         
@@ -109,7 +104,7 @@ def main():
     #st.write('A Tiny Example of Data from Dummy Things')
 
     data_files = {
-        "Arcadia": "./data/dictionary-light.csv",
+        "Arcadia": "./data/dictionary.csv",
         "Qualys": "./data/qualys-kb.csv",
         "Nessus": "./data/nessus-kb.csv"
     }
