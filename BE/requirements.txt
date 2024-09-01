@@ -1,1 +1,1 @@
-pip install pandas tables pyarrow
+pandas tables pyarrow aiohttp

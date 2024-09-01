@@ -11,7 +11,7 @@ class DataCleaner:
         self.df_allcve = pd.read_csv(self.file_allcve)
         self.df_nessus = pd.read_csv(self.file_nessus)
         self.df_qualys = pd.read_csv(self.file_qualys)
-        self.df_dictionary_light = pd.read_csv(self.file_dictionary)
+        self.df_dictionary = pd.read_csv(self.file_dictionary)
 
     def checkdf(self, dfcheck, key=None):
         # Stampa i duplicati e rimuove i duplicati
@@ -38,9 +38,9 @@ class DataCleaner:
         # Verifica e rimozione duplicati in df_qualys
         print("\n*********************\nqualys qid")
         self.checkdf(self.df_qualys, 'QID').to_csv(self.file_qualys, index=False)
-        # Verifica e rimozione duplicati in df_dictionary_light
+        # Verifica e rimozione duplicati in df_dictionary
         print("\n*********************\ndictionary cve")
-        self.checkdf(self.df_dictionary_light, 'CVE').to_csv(self.file_dictionary, index=False)
+        self.checkdf(self.df_dictionary, 'CVE').to_csv(self.file_dictionary, index=False)
         # Verifica e rimozione duplicati in df_allcve
         print("\n*********************\nall cve")
         self.checkdf(self.df_allcve).to_csv(self.file_allcve, index=False)

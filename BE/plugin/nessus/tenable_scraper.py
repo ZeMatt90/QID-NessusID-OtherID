@@ -4,9 +4,9 @@ import re
 import os
 
 class TenableScraper:
-    def __init__(self):
+    def __init__(self,log):
         self.logger = logging.getLogger('TenableScraper')
-        handler = logging.FileHandler('../../logs/tenable_scraper.log')
+        handler = logging.FileHandler(log)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
         self.logger.addHandler(handler)
@@ -49,12 +49,13 @@ class TenableScraper:
 
 if __name__ == '__main__':
     # Esempio di utilizzo
-    scraper = TenableScraper()
+    log ='../../logs/tenable_scraper.log'
+    scraper = TenableScraper(log)
     scraper.fetch_and_process_build_manifest(
         'https://www.tenable.com/plugins/nessus/186284',
-        'keyforget.csv'
+        'plugin/nessus/keyforget.csv'
     )
     scraper.fetch_and_process_plugin_numbers(
         'https://www.tenable.com/plugins/feeds?sort=newest',
-        'cleaned_numbers.csv'
+        'plugin/nessus/cleaned_numbers.csv'
     )
