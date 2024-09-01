@@ -4,3 +4,8 @@
 *.~lock
 #file troppo grande da poter caricare
 data/nessus-full.csv 
+BE/data/nessus-kb.csv
+
+#per cache
+*.pyc
+__pycache__/
