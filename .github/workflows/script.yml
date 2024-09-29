@@ -1,56 +1,56 @@
-name: Update All
+# name: Update All
 
-on:
-  schedule:
-    - cron: '47 0 * * *'
+# on:
+#   schedule:
+#     - cron: '47 0 * * *'
 
 
-jobs:
-  execute:
-    runs-on: ubuntu-latest
+# jobs:
+#   execute:
+#     runs-on: ubuntu-latest
 
-    steps:
+#     steps:
 
-    - name: Checkout code
-      uses: actions/checkout@v4
+#     - name: Checkout code
+#       uses: actions/checkout@v4
     
-    - name: Set up Python
-      uses: actions/setup-python@v5
+#     - name: Set up Python
+#       uses: actions/setup-python@v5
     
-    - name: Install Dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests pandas tqdm colorama aiohttp
+#     - name: Install Dependencies
+#       run: |
+#         python -m pip install --upgrade pip
+#         pip install requests pandas tqdm colorama aiohttp
 
-    - name: Update Nessus Plugin
-      run: |
-        # # Esegue la richiesta GET per ottenere il codice utilizzato per lanciare i js della get lo stesso codice funziona anche per altre get.
-        # curl -S https://www.tenable.com/plugins/nessus/186284 | grep -o "/_next/static/[^/]\+/_buildManifest.js" | sed -e 's#/_next/static/##' -e 's#/_buildManifest.js##' > plugin/nessus/keyforget.csv
+#     - name: Update Nessus Plugin
+#       run: |
+#         # # Esegue la richiesta GET per ottenere il codice utilizzato per lanciare i js della get lo stesso codice funziona anche per altre get.
+#         # curl -S https://www.tenable.com/plugins/nessus/186284 | grep -o "/_next/static/[^/]\+/_buildManifest.js" | sed -e 's#/_next/static/##' -e 's#/_buildManifest.js##' > plugin/nessus/keyforget.csv
         
-        # # Scarico i nuovi ID dei nuovi plugin
-        # curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv
+#         # # Scarico i nuovi ID dei nuovi plugin
+#         # curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv
         
-        #python main.py
+#         #python main.py
 
-        # python plugin/nessus/update.py
-        # python create_all_cve.py
-        # python createdictionary.py
-        # python controller_check_data.py
-        #comando unico eventuale
-        #curl -S https://www.tenable.com/plugins/nessus/186284 | grep -o "/_next/static/[^/]\+/_buildManifest.js" | sed -e 's#/_next/static/##' -e 's#/_buildManifest.js##' > plugin/nessus/keyforget.csv && curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv && python3 plugin/nessus/update.py && python3 create_all_cve.py && python3 createdictionary.py && python3 controller_check_data.py
+#         # python plugin/nessus/update.py
+#         # python create_all_cve.py
+#         # python createdictionary.py
+#         # python controller_check_data.py
+#         #comando unico eventuale
+#         #curl -S https://www.tenable.com/plugins/nessus/186284 | grep -o "/_next/static/[^/]\+/_buildManifest.js" | sed -e 's#/_next/static/##' -e 's#/_buildManifest.js##' > plugin/nessus/keyforget.csv && curl -S https://www.tenable.com/plugins/feeds?sort=newest | grep -o "<link>https://www.tenable.com/plugins/nessus/[0-9]\+</link>" | sed -n 's/.*\/\([0-9]*\)<\/link>.*/\1/p' > plugin/nessus/cleaned_numbers.csv && python3 plugin/nessus/update.py && python3 create_all_cve.py && python3 createdictionary.py && python3 controller_check_data.py
 
 
 
-    - name: Commit & Push Changes
-      run: |
-        git config --global user.name 'ZeMatt90'
-        git config --global user.email 'zenit90+git@gmail.com'
-        git add plugin/nessus/keyforget.csv plugin/nessus/full_id.csv plugin/nessus/cleaned_numbers.csv data/all_cve-light.csv data/dictionary.csv data/nessus-kb.csv 
-        git commit -m "Auto update nessus plugin and cve"
-        if git push; then
-          echo "Operazione completata con successo"
-        else
-          echo "Errore durante l'operazione, verifica il log per ulteriori dettagli"
-          exit 1  
-        fi
+#     - name: Commit & Push Changes
+#       run: |
+#         git config --global user.name 'ZeMatt90'
+#         git config --global user.email 'zenit90+git@gmail.com'
+#         git add plugin/nessus/keyforget.csv plugin/nessus/full_id.csv plugin/nessus/cleaned_numbers.csv data/all_cve-light.csv data/dictionary.csv data/nessus-kb.csv 
+#         git commit -m "Auto update nessus plugin and cve"
+#         if git push; then
+#           echo "Operazione completata con successo"
+#         else
+#           echo "Errore durante l'operazione, verifica il log per ulteriori dettagli"
+#           exit 1  
+#         fi
 
