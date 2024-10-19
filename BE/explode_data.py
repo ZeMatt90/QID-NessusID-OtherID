@@ -6,19 +6,20 @@ df_list = []
 df = pd.read_csv('data/dictionary.csv')  # CSV contenente CVE, NessusID, QualysID come liste
 
 # Esplodi le liste in righe separate
-df_exploded = df.copy()
-df_exploded['doc_id'] = df_exploded['doc_id'].str.split(',')
-df_exploded['QID'] = df_exploded['QID'].str.split(',')
+dfQ_exploded = df.copy()
+dfN_exploded = df.copy()
+dfN_exploded['doc_id'] = dfN_exploded['doc_id'].str.split(',')
+dfQ_exploded['QID'] = dfQ_exploded['QID'].str.split(',')
 
 df_exploded = df_exploded.explode('doc_id').explode('QID')
 
 # Rimuovi spazi bianchi e valori NaN
-df_exploded['doc_id'] = df_exploded['doc_id'].str.strip().fillna('No doc_id')
-df_exploded['QID'] = df_exploded['QID'].str.strip().fillna('No QID')
+dfN_exploded['doc_id'] = dfN_exploded['doc_id'].str.strip().fillna('No doc_id')
+dfQ_exploded['QID'] = dfQ_exploded['QID'].str.strip().fillna('No QID')
 
 # Creazione delle colonne di verifica
-df_exploded['Covered_by_Nessus'] = df_exploded['doc_id'] != 'No doc_id'
-df_exploded['Covered_by_Qualys'] = df_exploded['QID'] != 'No QID'
+dfN_exploded['Covered_by_Nessus'] = dfN_exploded['doc_id'] != 'No doc_id'
+dfQ_exploded['Covered_by_Qualys'] = dfQ_exploded['QID'] != 'No QID'
 
 # Creazione della colonna di combinazione per analisi
 def coverage_status(row):

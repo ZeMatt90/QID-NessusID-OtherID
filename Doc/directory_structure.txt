@@ -1,5 +1,10 @@
 FE
 ├── ArcadiaPage.py
+├── data
+│   ├── dictionary.csv
+│   ├── dictionary.feather
+│   ├── dictionary.h5
+│   └── dictionary.parquet
 ├── Home.py
 ├── __init__.py
 ├── NessusPage.py
@@ -8,6 +13,8 @@ FE
 │   ├── NessusPage.cpython-39.pyc
 │   └── QualysPage.cpython-39.pyc
 ├── QualysPage.py
-└── streamlit_app.py
+├── requirements.txt
+├── streamlit_app.py
+└── test_performance.py
 
-1 directory, 9 files
+2 directories, 15 files

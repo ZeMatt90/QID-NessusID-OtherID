@@ -55,7 +55,6 @@ class NessusUpdater:
             #'cleaned_numbers.csv'
         )
 
-        
     async def limited_fetch(self, session, url, semaphore):
         async with semaphore:
             return await self.fetch_url(session, url)
@@ -112,17 +111,14 @@ class NessusUpdater:
     async def async_version(self, urls):
         """
         Gestisce le richieste HTTP asincrone parallele.
-
         Args:
             urls (list): Lista di URL da cui scaricare i dati.
-
         Returns:
             list: Lista di risultati dalle richieste HTTP.
         """
-        semaphore = asyncio.Semaphore(2)  # Limita a 5 richieste simultanee
-        delay_between_requests = 1 / 2  # 5 richieste al secondo = 0,5 secondi tra le richieste
+        semaphore = asyncio.Semaphore(2)  # Limita a 2 richieste simultanee
+        delay_between_requests = 1 / 2  # 2 richieste al secondo = 0,5 secondi tra le richieste
 
-        
         async with aiohttp.ClientSession() as session:
             tasks = [
                 self.limited_fetch(session, url, semaphore) 
@@ -132,24 +128,9 @@ class NessusUpdater:
             results = await asyncio.gather(*tasks)
             return results
 
-
-        # async with aiohttp.ClientSession() as session:
-        #     tasks = []
-        #     for url in urls:
-        #         tasks.append(self.limited_fetch(session, url, semaphore))
-        #         await asyncio.sleep(delay_between_requests)
-        #     return await asyncio.gather(*tasks)
-        
-
-        # return await asyncio.gather(*tasks)
-
-        # async with aiohttp.ClientSession() as session:
-        #     tasks = [self.fetch_url(session, url) for url in urls]
-        #     return await asyncio.gather(*tasks)
-
     async def process(self):
         """
-        Carica i file CSV, filtra gli ID, genera le URL e aggiorna i file CSV con i nuovi dati.
+        Carica il file CSV, filtra gli ID, genera le URL e aggiorna il file CSV con i nuovi dati.
         """
         ds_nuovo = pd.read_csv(self.file_newid, header=None, dtype=int).iloc[:, 0]
         ds_full = pd.read_csv(self.file_full, header=None, dtype=int).iloc[:, 0]

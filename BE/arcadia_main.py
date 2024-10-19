@@ -16,20 +16,28 @@ class Arcadia:
         keyforget_file="plugin/nessus/keyforget.csv"
         file_dictionary="data/dictionary.csv"
         try:
-            ##############################
+            #=========================================================== 
+            # Step 1. Get new Nessus data                              # 
+            #===========================================================                    
             print("update Nessus data...")
             log="logs/tenable_scraper.log"
             nessus_updater = NessusUpdater(base_url,file_newid,file_fullidnessus,file_nessus,keyforget_file,log)
             asyncio.run(nessus_updater.process())
-            ##############################
+            #=========================================================== 
+            # Step 2. Update list of cve and status                    # 
+            #===========================================================      
             print("Running CveUpdater...")
             processor = CveUpdater(file_nessus, file_qualys, file_allcve)
             processor.process()     
-            #####################################
-            print("Running create_dictionary...")
+            #=========================================================== 
+            # Step 3. Update     the dictionary                        # 
+            #===========================================================      
+            print("Running ArcadiaDictionary...")
             processor = ArcadiaDictionary(file_nessus, file_qualys, file_allcve, file_dictionary)
             processor.update()
-            #################################################
+            #=========================================================== 
+            # Step 4. Check data, clean ecc                            # 
+            #===========================================================      
             print("clean data and immpossible duplicates...")
             cleaner = DataCleaner(
                 file_fullidnessus,
