@@ -61,7 +61,7 @@ class ArcadiaDictionary:
         }
 
     # Funzione per processare i CVE in parallelo usando il multiprocessing
-    @deprecated
+    @deprecated("This function before big data is useless can be used in future versions.")
     def parallel_processing_multiprocess(self, df_cve_to_update):
         nuove_righe = []
         
@@ -98,7 +98,7 @@ class ArcadiaDictionary:
         return nuove_righe
 
     # Funzione per processare i CVE in parallelo usando multithread
-    @deprecated
+    @deprecated("This function before big data is useless can be used in future versions.")
     def parallel_processing(self, df_cve_to_update):
         # Ottieni il numero di CPU disponibili per il parallelismo con i thread
         # num_threads = multiprocessing.cpu_count()  # Numero di thread che vogliamo usare
@@ -180,7 +180,7 @@ class ArcadiaDictionary:
             self.df_cve.to_csv(self.allcve_csv, index=False)
 
 # Funzione per processare un CVE (deve essere esterna per funzionare con multiprocessing)
-@deprecated
+@deprecated("This function before big data is useless can be used in future versions.")
 def process_cve_multiprocess(args):
     cve_value, df_qualys, df_nessus = args
     

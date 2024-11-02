@@ -1,1 +1,6 @@
-pandas tables pyarrow aiohttp
+pandas
+tables
+pyarrow
+aiohttp
+typing_extensions
+tqdm
