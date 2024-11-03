@@ -18,8 +18,8 @@ def main():
     csv_path = os.path.join(current_dir, 'data', 'dictionary.csv')
 
     data_files = {
-        "Home":csv_path+"/data/dictionary.csv",
-        "Arcadia": csv_path+"data/dictionary.csv"
+        "Home":csv_path,
+        "Arcadia": csv_path
         # "Qualys": "data/qualys-kb.csv",
         # "Nessus": "data/nessus-kb.csv"
     }
