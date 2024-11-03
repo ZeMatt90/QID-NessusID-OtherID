@@ -12,10 +12,10 @@ def main():
     st.title("🌟 Arcadia Streamlit 🌟")
 
     data_files = {
-        "Home":"../BE/data/dictionary.csv",
-        "Arcadia": "../BE/data/dictionary.csv",
-        "Qualys": "../BE/data/qualys-kb.csv",
-        "Nessus": "../BE/data/nessus-kb.csv"
+        "Home":"data/dictionary.csv",
+        "Arcadia": "data/dictionary.csv",
+        # "Qualys": "data/qualys-kb.csv",
+        # "Nessus": "data/nessus-kb.csv"
     }
 
     tab = st.sidebar.selectbox("Scelta pagina", list(data_files.keys()))
@@ -26,10 +26,10 @@ def main():
         HomePage.show_page(df)
     elif tab == "Arcadia":
         ArcadiaPage.show_page(df)
-    elif tab == "Qualys":
-        QualysPage.show_page(df)
-    elif tab == "Nessus":
-        NessusPage.show_page(df)
+    # elif tab == "Qualys":
+    #     QualysPage.show_page(df)
+    # elif tab == "Nessus":
+    #     NessusPage.show_page(df)
 
 if __name__ == '__main__':
     main()
