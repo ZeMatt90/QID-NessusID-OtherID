@@ -4,8 +4,8 @@ import pandas as pd
 
 # Importa le pagine
 import ArcadiaPage
-import QualysPage
-import NessusPage
+# import QualysPage
+# import NessusPage
 import HomePage
 
 def main():
