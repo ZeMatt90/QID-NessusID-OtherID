@@ -1,7 +1,4 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
-import seaborn as sns
 import matplotlib.pyplot as plt
 
 # def run_update():
@@ -20,46 +17,12 @@ def show_page(df):
 
     st.dataframe(data_filtrati)
 
-    # st.subheader("Conteggio delle occorrenze QID per ogni CVE")
-    # conteggio_qid_per_cve = df['QID'].apply(len)
-    # st.bar_chart(conteggio_qid_per_cve.value_counts())
-
-    # st.subheader("Conteggio delle occorrenze Nessus per ogni CVE")
-    # conteggio_qid_per_cve = df['doc_id'].apply(len)
-    # st.bar_chart(conteggio_qid_per_cve.value_counts())
-
-
-    # # Creazione della matrice di correlazione tra Nessus_ID e Qualys_ID
-    # correlation_matrix = pd.crosstab(df['Doc_id'], df['QID'])
-
-    # # Streamlit App
-    # st.title("Correlazione tra Nessus e Qualys tramite CVE comuni")
-
-    # st.write("Questa heatmap mostra la correlazione tra gli ID di Nessus e Qualys basata sulle CVE comuni.")
-
-    # # Creazione del grafico a heatmap
-    # plt.figure(figsize=(10, 7))
-    # sns.heatmap(correlation_matrix, annot=True, fmt="d", cmap="Blues", cbar=True)
-    # plt.title("Correlazione tra Nessus e Qualys")
-    # plt.xlabel("Qualys_ID")
-    # plt.ylabel("Nessus_ID")
-
-    # # Visualizzazione del grafico con Streamlit
-    # st.pyplot(plt)
-
 
 
     # Grafico 1: Numero di vulnerabilità per CVE
     st.subheader("Numero di vulnerabilità per CVE")
     cve_counts = df['CVE'].value_counts()
     
-    # plt.figure(figsize=(10, 6))
-    # plt.bar(cve_counts.index, cve_counts.values, color='steelblue')
-    # plt.xlabel('CVE')
-    # plt.ylabel('Numero di Vulnerabilità')
-    # plt.title('Numero di Vulnerabilità per CVE')
-    # st.pyplot(plt)
-
     # Grafico 2: Distribuzione dei QID per CVE
     st.subheader("Distribuzione dei QID per CVE")
     qid_lengths = df['QID'].apply(len)

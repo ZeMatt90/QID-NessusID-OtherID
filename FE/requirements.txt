@@ -1,1 +1,1 @@
-pip install pandas tables pyarrow streamlit
+pandas streamlit requests
