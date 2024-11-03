@@ -1,5 +1,0 @@
-digraph "classes_ArcadiaFE" {
-rankdir=BT
-charset="utf-8"
-"FE.streamlit_app.UserInterface" [color="black", fontcolor="black", label=<{UserInterface|df<br ALIGN="LEFT"/>|run_update()<br ALIGN="LEFT"/>show_arcadia_page()<br ALIGN="LEFT"/>show_data_page(title)<br ALIGN="LEFT"/>show_nessus_page()<br ALIGN="LEFT"/>show_qualys_page()<br ALIGN="LEFT"/>}>, shape="record", style="solid"];
-}
