@@ -13,7 +13,7 @@ def main():
 
     data_files = {
         "Home":"data/dictionary.csv",
-        "Arcadia": "data/dictionary.csv",
+        "Arcadia": "data/dictionary.csv"
         # "Qualys": "data/qualys-kb.csv",
         # "Nessus": "data/nessus-kb.csv"
     }
