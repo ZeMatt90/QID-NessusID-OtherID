@@ -1,5 +1,6 @@
  # About QID-NessusID-OtherID
- [![Streamlit App](https://img.shields.io/badge/Streamlit-Live_App-brightgreen?style=for-the-badge&logo=streamlit)](https://homepy-hvrbat7j7lxpjhac7rd2pw.streamlit.app/)
+
+[![Streamlit App 👈✨](https://img.shields.io/badge/Streamlit-Live_App-brightgreen?style=for-the-badge&logo=streamlit)](https://homepy-hvrbat7j7lxpjhac7rd2pw.streamlit.app/) 👈 **Try the live app!**
 
 <p>
  <img align="right" width="350" src="/assets/programmer.gif" alt="Coding gif" />
